@@ -13,15 +13,24 @@ const winCondition = [
   [0, 4, 8],
   [2, 4, 6]
 ];
-
-
-
+const addX = (i) => {
+  square[i].innerText = "X";
+  square[i].classList = "X";
+}
+const addO = (i) => {
+  square[i].innerText = "O";
+  square[i].classList = "O";
+}
 for (let i = 0; i < square.length; i++) {
   square[i].getAttribute("data-num");
   square[i].addEventListener("click", () => {
-    console.log(i);
-    square[i].classList.add("X");
-    square[i].innerHTML = "X";
+    console.log(i + "this is a clicks and showss me box");
+    if (i % 2 === 0) {
+      addX(i);
+    }
+    else if (i % 2 === 1) {
+      addO(i);
+    }
   });
 
 }
