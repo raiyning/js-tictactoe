@@ -2,7 +2,7 @@
 const play1 = [];
 const play2 = [];
 const square = document.getElementsByTagName('td');
-
+const turn = document.getElementsByClassName('playerTurn');
 const winCondition = [
   [0, 1, 2],
   [3, 4, 5],
@@ -13,35 +13,55 @@ const winCondition = [
   [0, 4, 8],
   [2, 4, 6]
 ];
-let storedXConditions = [0, 0, 0, 0, 0];
-let storedOConditions = [0, 0, 0, 0, 0];
+let storedX = [0, 0, 0, 0, 0];
+let storedO = [0, 0, 0, 0, 0];
 let switcher = true;
+let count = 0;
+//display the  next turn message
+const xTurnString = () => {
+  turn[0].innerText = "It is X's turn";
+}
+const oTurnString = () => {
+  turn[0].innerText = "It is O's turn";
+}
+const pickAnother = () => {
+  turn[0].innerText = "stop that!";
+}
 
-
-const addX = (i, h) => {
+//insert the 
+const addX = (i) => {
   square[i].innerText = "X";
   square[i].classList = "X";
   switcher = false;
 }
-const addO = (i, h) => {
-  square[i].innerText = "O";
+const addO = (i) => {
+  if (square[i].innerText !== "X")
+    square[i].innerText = "O";
   square[i].classList = "O";
   switcher = true;
-  storedXConditions[h] = i;
-  console.log(h + " this inside addO");
+  storedX[0] = i;
+  console.log(i + " this inside addO");
 }
-for (let h = 0; h < 9; h++) {
-  for (let i = 0; i < square.length; i++) {
-    square[i].getAttribute("data-num");
-    square[i].addEventListener("click", () => {
-      console.log(i + "this is a clicks and showss me box");
+//start to listen to all data-nums
+for (let i = 0; i < square.length; i++) {
+  square[i].getAttribute("data-num");
+  square[i].addEventListener("click", () => {
+    console.log(i + "this is a clicks and showss me box");
+    if (square[i] === "X") { pickAnother(); }
+    else if (square[i] === "X") { pickAnother(); }
+    else if (square[i] === "O") { pickAnother(); }
+    else {
       if (switcher === true) {
-        console.log(h + " this before addO");
-        addX(i, h);
+        console.log(i + " this before addO");
+        addX(i);
+        oTurnString();
+
       }
       else if (switcher === false) {
-        addO(i, h);
+        addO(i);
+        xTurnString();
       }
-    });
-  }
+    }
+  });
+
 }
