@@ -14,9 +14,14 @@ const winCondition = [
   [2, 4, 6]
 ];
 
+
+
 for (let i = 0; i < square.length; i++) {
-  console.log(square[i].getAttribute("data-num"));
+  square[i].getAttribute("data-num");
+  square[i].addEventListener("click", () => {
+    console.log(i);
+    square[i].classList.add("X");
+    square[i].innerHTML = "X";
+  });
+
 }
-/*for (let i = 0; i > square.length; i++) {
-  console.log(square[i]);
-}*/
